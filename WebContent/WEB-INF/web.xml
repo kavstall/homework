@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>homework</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 验证码 -->
+  <servlet>
+  	<servlet-name>VerificationCode</servlet-name>
+  	<servlet-class>com.sbs.homework.servlets.VerificationCode</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>VerificationCode</servlet-name>
+  	<url-pattern>/code.jhtml</url-pattern>
+  </servlet-mapping>
+  
+  <!--登录验证-->
+  <servlet>
+  	<servlet-name>Login</servlet-name>
+  	<servlet-class>com.sbs.homework.servlets.LoginServlets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Login</servlet-name>
+  	<url-pattern>/login.jhtml</url-pattern>
+  </servlet-mapping>
+    <!--注册验证-->
+  <servlet>
+  	<servlet-name>Register</servlet-name>
+  	<servlet-class>com.sbs.homework.servlets.RegisterServlets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Register</servlet-name>
+  	<url-pattern>/register.jhtml</url-pattern>
+  </servlet-mapping>
+  
+  <!--短信验证码-->
+  <servlet>
+  	<servlet-name>sendSMS</servlet-name>
+  	<servlet-class>com.sbs.homework.servlets.SendSms</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>sendSMS</servlet-name>
+  	<url-pattern>/sendSMS</url-pattern>
+  </servlet-mapping>
+  <!-- 数据库注册 -->
+  <resource-ref>
+    <res-ref-name>jdbc/mydb</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+
+</web-app>
