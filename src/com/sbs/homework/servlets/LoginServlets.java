@@ -23,7 +23,7 @@ public class LoginServlets extends HttpServlet {
 		String username ="";
 		String password ="";
 		String errory="";
-		String code ="";
+		String code ="x";
 		Globle globle = new Globle();
 		//获取页面传递过来的验证码
 		code = req.getParameter("code");
@@ -52,7 +52,7 @@ public class LoginServlets extends HttpServlet {
 			session.setAttribute("username", username);
 			//设置session存在时间为20分钟
 			session.setMaxInactiveInterval(20*60);
-			resp.sendRedirect("index.jsp");
+			resp.sendRedirect("home.jsp");
 			return;
 		}else{
 			errory = "对不起，您的密码不正确，请重新输入";

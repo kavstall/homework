@@ -4,6 +4,8 @@ public class User{
 
 
 	private int id;
+	
+	private int identity;
 
 	private String password;
 
@@ -51,6 +53,14 @@ public class User{
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public int getIdentity() {
+		return identity;
+	}
+
+	public void setIdentity(int identity) {
+		this.identity = identity;
 	}
 
 }

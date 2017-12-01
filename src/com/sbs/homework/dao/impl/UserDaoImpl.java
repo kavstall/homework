@@ -42,5 +42,35 @@ public class UserDaoImpl implements UserDao{
 		
 		return user;
 	}
+
+	@Override
+	public Boolean saveUser(String username, String password, String phone) {
+		Connection con = null;
+		User user = null;
+		Boolean result= false;
+		con = DBUtils.getConnection();
+		String sql = "insert into user values('0', '0','"+username+"', '"+password+"', '"+phone+"')";
+		Statement st = null;
+		
+		try {
+			st =con.createStatement();
+			int temp=st.executeUpdate(sql);
+			if(temp>0){
+				result = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				st.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 	
 }

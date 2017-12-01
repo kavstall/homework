@@ -1,0 +1,51 @@
+@charset "gb2312";
+.ziti1.button1 {
+	font-family: "Ó×Ô²";
+	font-size: 20px;
+	color: #F00;
+	font-weight: bold;
+	text-align: center;
+}
+.ziti2 {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 12px;
+	color: #000;
+	text-align: center;
+}
+a.a1:visited {
+	color: #FFF;
+}
+.ziti3_red {
+	font-family: "ËÎÌå";
+	font-size: 24px;
+	color: #F00;
+	text-align: left;
+	vertical-align: middle;
+}
+.ziti4_gray {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 16px;
+	color: #999;
+	line-height: 20px;
+	text-align: left;
+}
+a.a2:visited {
+	font-family: "ËÎÌå";
+	font-size: 24px;
+	color: #FF0000;
+	border-bottom-width: thin;
+	border-bottom-style: solid;
+	border-bottom-color: #F00;
+}
+a.a2:hover {
+	font-family: "ËÎÌå";
+	font-size: 24px;
+	color: #F00;
+	text-align: left;
+}
+.ziti5_brown {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 14px;
+	color: #960;
+	text-align: left;
+}

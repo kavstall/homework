@@ -1,0 +1,6 @@
+@charset "gb2312";
+.button1 {
+	background-image: url(../pic_source/button1.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+}

@@ -147,6 +147,7 @@ public class GetMessageCode {
 		if(ran.length()!=6){
 			smsCode();
 		}
+		Globle.setSmsCode(ran);
 		return ran;
 	}
 	/**

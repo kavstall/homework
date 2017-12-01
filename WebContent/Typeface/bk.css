@@ -1,0 +1,30 @@
+@charset "gb2312";
+.bk {
+	background-attachment: scroll;
+	background-image: url(../pic_source/bk_1.jpg);
+	background-repeat: repeat-y;
+	text-align: center;
+	font-family: "ËÎÌå";
+	margin: auto;
+}
+.bk_white {
+	background-color: #FFF;
+	text-align: center;
+	margin: auto;
+	color: #000;
+}
+.bk_red {
+	background-color: #F00;
+	text-align: center;
+	font-size: 14px;
+	color: #FFF;
+	font-family: "Î¢ÈíÑÅºÚ";
+	vertical-align: middle;
+	margin: auto;
+}
+.bk_biankuang1 {
+	text-align: left;
+	font-family: "ËÎÌå";
+	font-size: 24px;
+	border: thin dashed #F00;
+}
