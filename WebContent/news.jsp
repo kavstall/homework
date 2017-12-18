@@ -1,5 +1,8 @@
+<%@ page import="com.sbs.*" %>
+<%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,9 +21,65 @@ a:visited {
 	color: #FFFFFF;
 }
 body,td,th {
-	font-size: 24px;
+	font-size: 20px;
 }
+<!-- 新添部分 -->
+
+.input2 {
+    width: 150px;
+    height: 25px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.submit1 {
+    width: 50px;
+    border: #CCCCCC solid 1px;
+    height: 30px;
+    background: #FFFFFF
+}
+#form1 tr th {
+    text-align: right;
+}
+input {
+    text-align: left;
+}
+body {
+    font-family: "微软雅黑", Verdana, sans-serif, "宋体";
+    color: #333;
+}
+.mybutton {
+    width: 90px;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+<!-- 新添部分 -->
 </style>
+
+<script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+
+<script type="text/javascript">
+window.onload = function(){
+	<%
+		Boolean result = false;
+		String username = "";
+		if(session.getAttribute("username")!=null && !"".equals(session.getAttribute("username"))){
+			username = session.getAttribute("username").toString();
+			result =true;
+		}
+	%>
+	var result = "<%=result %>";
+	var html ="<a href='register.jsp'>注册</a>&nbsp; &nbsp;&nbsp;<a href='login.jsp'>登录</a>&nbsp; &nbsp;&nbsp;";
+	
+	if(result=="true"){
+		html = "欢迎 &nbsp; &nbsp;"+"<%=username %>"+"&nbsp; &nbsp;用户"+"&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href='logout?v=11'>注销</a>";
+	}
+	$("#bk_red").html(html);
+}
+</script>
 <script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
 <script type="text/javascript">
 function MM_swapImgRestore() { //v3.0
@@ -47,13 +106,13 @@ function MM_swapImage() { //v3.0
 </script>
 </head>
 
-<body onLoad="MM_preloadImages('pic_source/01-.png','pic_source/02-.png','pic_source/03-.png','pic_source/04-.png')">
-<table width="78%" border="0" align="center" class="bk_white">
+<body>
+<table width="73%" border="0" align="center" class="bk_white">
   <tr>
-    <td colspan="5" class="bk_red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="register.html">注册</a>&nbsp; &nbsp;&nbsp;<a href="login.html">登录</a>&nbsp; &nbsp;&nbsp;<a href="http://fans.a-li.com.cn/" target="_blank">论坛</a>&nbsp; &nbsp;&nbsp;<a href="http://m.idreamcastle.com/" target="_blank">会员</a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</td>
+    <td colspan="5" class="bk_red" id="bk_red"></td>
   </tr>
   <tr>
-    <td width="20%"><img src="pic_source/erweima.gif" width="190" height="189" align="center"></td>
+    <td width="24%"><img src="pic_source/erweima.gif" width="190" height="189" align="center"></td>
     <td colspan="4"><img src="pic_source/logo_1.png" width="400" height="230" align="center"></td>
   </tr>
   <tr>
@@ -102,13 +161,13 @@ $(document).ready(function(){
 </script>
       <div id="menu" class="menu">
         <ul>
-          <li><a href="home.html">网站首页</a></li>
-          <li><a href="news.jsp">最新消息</a></li>
-          <li><a href="storybook.html">童话绘本</a></li>
+          <li><a href="home.jsp">网站首页</a></li>
+          <li><a href="show.jhtml">最新消息</a></li>
+          <li><a href="storybook.jsp">童话绘本</a></li>
           <li><a href="https://ali.tmall.com/" target="_blank">周边商城</a></li>
-          <li><a href="photo.html">素材下载</a></li>
-          <li><a href="video.html">加入我们</a></li>
-          <li><a href="connect.html">联系我们</a></li>
+          <li><a href="photo.jsp">素材下载</a></li>
+          <li><a href="video.jsp">加入我们</a></li>
+          <li><a href="upload.jsp">上传材料</a></li>
         </ul>
       </div>
     <div style="text-align:center;clear:both"></div></td>
@@ -116,12 +175,84 @@ $(document).ready(function(){
   <tr>
     <td><img src="pic_source/logo_0.png" width="180" height="180" align="top"></td>
     <td colspan="4" rowspan="5" class="bk_biankuang1">
-	<!-- 留言板功能区 -->
-	留言板功能区
+<!-- 留言板展示功能区 -->
 	
+	<br>
+	<p style="font-size:48px;text-align:center">留言板</p><br><hr><br>
+	<div style="font-size:18px;color:#000000;margin:20px">
 	
+	<form name="form2" id="form2" action="/homework/show.jhtml" method="post">
+		<input name="action" type="hidden" id="show" value="show">
 	
-	<!-- 留言板功能区 -->
+	<c:forEach items="${list}" var="msg" begin="${showPage1}" end="${showPage2}">
+	<table>
+		<tr>
+			<td>作者：${msg.username}</td>
+		</tr>
+		<tr>
+			<td>发表时间：${msg.time}</td>
+		</tr>
+		<tr>
+			<td align="left">发表内容：${msg.message}<br><br></td>
+		</tr>
+	</table>
+	</c:forEach>
+	<!-- 
+	<input type="submit" name="btn1" onclick="shang()" value="上一页" class="mybutton">
+	<input type="submit" name="btn2" onclick="xia()" value="下一页" class="mybutton">
+	
+	<button onclick="shang()" class="mybutton">上一页</button>
+	<button onclick="xia()" class="mybutton">下一页</button>
+	 -->
+	<br>
+	<table>
+	<tr>
+	<td>
+	当前为第&nbsp;${showPage}&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;
+	共&nbsp;${pageCount}&nbsp;页
+	</td>
+	</tr>
+	<br>
+	<tr>
+	<td>
+	跳转到第<input type="text" name="ShowPage" size="2" onkeyup="value=value.replace(/[^\d]/g,'')"/>页
+	<input type="submit" name="ShowPage" id="ShowPage" value="跳转" class="mybutton">
+	<td>
+	</tr>
+	</table>
+	</form>
+	
+	</div>
+	<!-- 留言板展示功能区 -->
+	
+	<!-- 留言板留言功能区 -->
+	<br><hr><br>
+	<div style="font-size:18px;color:#000000;margin:20px">
+	<table width="400" align="center" cellpadding="2"
+            cellspacing="0">
+
+  <form name="form1" id="form1" action="/homework/write.jhtml" method="post">
+    <tr>
+      <td width="280" align="left">用户名：<br>
+      <input name="username" type="text" class="input2" id="name"></td>
+    </tr>
+    <tr>
+      <td><br>留言板:<br>
+      <textarea name="message" id="content" cols="60" rows="5"></textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="submit" id="submit" value="提交留言" class="mybutton">
+        &nbsp;
+        
+        &nbsp;
+        <input type="reset" name="reset" id="reset" value="重新填写" class="mybutton">
+        <input name="action" type="hidden" id="check" value="add"></td>
+    </tr>
+  </form>
+</table>
+</div>
+	
+	<!-- 留言板留言功能区 -->
 	</td>
   </tr>
   <tr>

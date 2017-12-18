@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sbs.homework.dao.UserDao;
 import com.sbs.homework.dao.impl.UserDaoImpl;
 import com.sbs.homework.utils.Globle;
+import com.sbs.homework.utils.MD5;
 
 public class RegisterServlets extends HttpServlet {
 
@@ -24,7 +25,8 @@ public class RegisterServlets extends HttpServlet {
 		resp.setCharacterEncoding("utf-8");
 		//定义字符串接收用户账号，密码，手机号，验证码
 		String username=req.getParameter("username");
-		String password=req.getParameter("password");
+		//密码需要进行MD5加密
+		String password=MD5.getMd5(req.getParameter("password"));
 		String phone=req.getParameter("phone");
 		String code =req.getParameter("code");
 		String error ="";

@@ -12,6 +12,7 @@ import com.sbs.homework.dao.UserDao;
 import com.sbs.homework.dao.impl.UserDaoImpl;
 import com.sbs.homework.entity.User;
 import com.sbs.homework.utils.Globle;
+import com.sbs.homework.utils.MD5;
 
 public class LoginServlets extends HttpServlet {
 
@@ -22,27 +23,28 @@ public class LoginServlets extends HttpServlet {
 		resp.setCharacterEncoding("utf-8");
 		String username ="";
 		String password ="";
-		String errory="";
+		String error="";
 		String code ="x";
 		Globle globle = new Globle();
 		//获取页面传递过来的验证码
 		code = req.getParameter("code");
 		String codes = globle.getCode().toLowerCase();
 		if(!code.equals(codes)){
-			errory = "对不起，您的验证码有问题，请重新输入";
-			req.setAttribute("errory", errory);
+			error = "对不起，您的验证码有问题，请重新输入";
+			req.setAttribute("error", error);
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 			return;
 		}
 		
 		//获取页面传递过来的账号密码
 		username = req.getParameter("username");
-		password = req.getParameter("password");
+		//需要进行md5加密
+		password = MD5.getMd5(req.getParameter("password"));
 		UserDao userDao = new UserDaoImpl();
 		User user = userDao.queryByUsername(username);
 		if(user ==null){
-			errory = "对不起，您的账号不正确，请重新输入";
-			req.setAttribute("errory", errory);
+			error = "对不起，您的账号不正确，请重新输入";
+			req.setAttribute("error", error);
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 			return;
 		}
@@ -55,8 +57,8 @@ public class LoginServlets extends HttpServlet {
 			resp.sendRedirect("home.jsp");
 			return;
 		}else{
-			errory = "对不起，您的密码不正确，请重新输入";
-			req.setAttribute("errory", errory);
+			error = "对不起，您的密码不正确，请重新输入";
+			req.setAttribute("error", error);
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 			return;
 		}

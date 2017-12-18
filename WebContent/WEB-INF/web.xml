@@ -24,6 +24,16 @@
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/login.jhtml</url-pattern>
   </servlet-mapping>
+   <!--管理员登录验证-->
+  <servlet>
+  	<servlet-name>AdministrationLogin</servlet-name>
+  	<servlet-class>com.sbs.homework.servlets.AdministrationLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdministrationLogin</servlet-name>
+  	<url-pattern>/Administrationlogin.jhtml</url-pattern>
+  </servlet-mapping>
+  
     <!--注册验证-->
   <servlet>
   	<servlet-name>Register</servlet-name>
@@ -43,11 +53,92 @@
   	<servlet-name>sendSMS</servlet-name>
   	<url-pattern>/sendSMS</url-pattern>
   </servlet-mapping>
+  
+   <!--管理员查询信息-->
+  <servlet>
+  	<servlet-name>adminQuery</servlet-name>
+  	<servlet-class>com.sbs.homework.servlets.AdminQuery</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>adminQuery</servlet-name>
+  	<url-pattern>/adminQuery</url-pattern>
+  </servlet-mapping>
+  
+  <!--管理员重置密码-->
+  <servlet>
+  	<servlet-name>adminReset</servlet-name>
+  	<servlet-class>com.sbs.homework.servlets.AdminReset</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>adminReset</servlet-name>
+  	<url-pattern>/adminReset</url-pattern>
+  </servlet-mapping>
+  
   <!-- 数据库注册 -->
   <resource-ref>
     <res-ref-name>jdbc/mydb</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
+  <!-- 下载图片 -->
+  <servlet>
+    <servlet-name>DownloadServlet</servlet-name>
+    <servlet-class>com.sbs.homework.servlets.DownloadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadServlet</servlet-name>
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 注销  -->
+  <servlet>
+    <servlet-name>logout</servlet-name>
+    <servlet-class>com.sbs.homework.servlets.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logout</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 上传文件  -->
+  <servlet>
+    <servlet-name>upload</servlet-name>
+    <servlet-class>com.sbs.homework.servlets.Upload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>upload</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 上传文件  -->
+  <servlet>
+    <servlet-name>query</servlet-name>
+    <servlet-class>com.sbs.homework.utils.Query</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>query</servlet-name>
+    <url-pattern>/query</url-pattern>
+  </servlet-mapping>
+  
+  <!--留言上传-->
+  <servlet>
+  	<servlet-name>Write</servlet-name>
+  	<servlet-class>com.sbs.homework.servlets.WriteServlets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Write</servlet-name>
+  	<url-pattern>/write.jhtml</url-pattern>
+  </servlet-mapping>
+  
+  <!--留言显示-->
+  <servlet>
+  	<servlet-name>Show</servlet-name>
+  	<servlet-class>com.sbs.homework.servlets.ShowServlets</servlet-class>
+  	<load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Show</servlet-name>
+  	<url-pattern>/show.jhtml</url-pattern>
+  </servlet-mapping>
 
 </web-app>

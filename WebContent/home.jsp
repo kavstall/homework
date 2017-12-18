@@ -3,7 +3,7 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="gb2312">
+<meta charset="UTF-8">
 <title>ali's home</title>
 
 <link rel="shortcut icon" type="pic_source/logo_2.jpeg" href="pic_source/logo_3.png" media="screen" /><!--替换网页窗口图标-->
@@ -17,6 +17,25 @@ a:visited {
 	color: #FFFFFF;
 }
 </style>
+<script type="text/javascript">
+window.onload = function(){
+	<%
+		Boolean result = false;
+		String username = "";
+		if(session.getAttribute("username")!=null && !"".equals(session.getAttribute("username"))){
+			username = session.getAttribute("username").toString();
+			result =true;
+		}
+	%>
+	var result = "<%=result %>";
+	var html ="<a href='register.jsp'>注册</a>&nbsp; &nbsp;&nbsp;<a href='login.jsp'>登录</a>&nbsp; &nbsp;&nbsp;";
+	
+	if(result=="true"){
+		html = "欢迎 &nbsp; &nbsp;"+"<%=username %>"+"&nbsp; &nbsp;用户"+"&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href='logout?v=11'>注销</a>";
+	}
+	$("#bk_red").html(html);
+}
+</script>
 <script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
 <script type="text/javascript">
 function MM_swapImgRestore() { //v3.0
@@ -43,13 +62,10 @@ function MM_swapImage() { //v3.0
 </script>
 </head>
 
-<body onLoad="MM_preloadImages('pic_source/01-.png','pic_source/02-.png','pic_source/03-.png','pic_source/04-.png')">
+<body>
 <table width="73%" border="0" align="center" class="bk_white">
   <tr>
-    <td colspan="5" class="bk_red">
-    	<%=session.getAttribute("username") %>
-     	<a href="register.html">注册</a>&nbsp; &nbsp;&nbsp;
-   		<a href="login.jsp">登录</a>&nbsp; &nbsp;&nbsp;
+    <td colspan="5" class="bk_red" id="bk_red">
     </td>
   </tr>
   <tr>
@@ -102,13 +118,13 @@ $(document).ready(function(){
 </script>
       <div id="menu" class="menu">
         <ul>
-          <li><a href="home.html">网站首页</a></li>
-          <li><a href="news.jsp">最新消息</a></li>
-          <li><a href="storybook.html">童话绘本</a></li>
+          <<li><a href="home.jsp">网站首页</a></li>
+          <li><a href="show.jhtml">最新消息</a></li>
+          <li><a href="storybook.jsp">童话绘本</a></li>
           <li><a href="https://ali.tmall.com/" target="_blank">周边商城</a></li>
-          <li><a href="photo.html">素材下载</a></li>
-          <li><a href="video.html">加入我们</a></li>
-          <li><a href="connect.html">联系我们</a></li>
+          <li><a href="photo.jsp">素材下载</a></li>
+          <li><a href="video.jsp">加入我们</a></li>
+          <li><a href="upload.jsp">上传材料</a></li>
         </ul>
       </div>
     <div style="text-align:center;clear:both"></div></td>

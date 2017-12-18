@@ -1,12 +1,16 @@
 package com.sbs.homework.entity;
 
+import java.util.List;
+
 public class Message{
 
 	private int uid;
 
+	private String username;
+	
+	private String time;
+	
 	private String message;
-
-	private User user;
 
 	public Message() {
 	}
@@ -26,13 +30,26 @@ public class Message{
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-	public User getUser() {
-		return this.user;
+	
+	public Message(String username, String time, String message){
+		this.username = username;
+		this.time = time;
+		this.message = message;
+	}
+	
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
 }

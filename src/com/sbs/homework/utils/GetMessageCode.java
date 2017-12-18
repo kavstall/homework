@@ -122,15 +122,15 @@ public class GetMessageCode {
 			MessageDigest digest = MessageDigest.getInstance("MD5");
 			//获得需要加密的字符数组
 			byte[] bytes = digest.digest(source.getBytes());
-				for(byte b : bytes){
-					//把字节转化为16进制
-					String hex = Integer.toHexString(b&0xff);
-					if(hex.length()==1){
-						result.append("0"+hex);
-					}else{
-						result.append(hex);
-					}
+			for(byte b : bytes){
+				//把字节转化为16进制
+				String hex = Integer.toHexString(b&0xff);
+				if(hex.length()==1){
+					result.append("0"+hex);
+				}else{
+					result.append(hex);
 				}
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -23,5 +23,14 @@ public class Globle {
 	public static void setSmsCode(String smsCode) {
 		Globle.smsCode = smsCode;
 	}
-	
+	// 获取分页页数
+	private static int pageCount;
+		
+	public static int getpageCount() {
+		return pageCount;
+	}
+
+	public static void setpageCount(int pageCount) {
+		Globle.pageCount = pageCount;
+	}
 }

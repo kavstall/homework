@@ -16,6 +16,44 @@ a:link {
 a:visited {
 	color: #FFFFFF;
 }
+
+
+<!--新增部分-->
+body,td,th {
+	font-size: 30px;
+	text-align: rigth;
+}
+.f1 {
+	font-size: 30px;
+	text-align: rigth;
+}
+.input2 {
+    width: 150px;
+    height: 25px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.submit1 {
+    width: 50px;
+    border: #CCCCCC solid 1px;
+    height: 30px;
+    background: #FFFFFF
+}
+
+input {
+    text-align: left;
+}
+body {
+    font-family: "微软雅黑", Verdana, sans-serif, "宋体";
+    color: #333;
+}
+.mybutton {
+    width: 80px;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
 </style>
 <link href="SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css">
 <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
@@ -85,7 +123,7 @@ function MM_validateForm() { //v4.0
 				data: {"phone":phone},
 				//返回结果
 				success: function(result){
-					code = result;
+					alert(result);
 				}
 			});
 		}
@@ -97,17 +135,32 @@ function MM_validateForm() { //v4.0
 				window.location="login.jsp";
 			}
 			
+			<%
+			Boolean result = false;
+			String username = "";
+			if(session.getAttribute("username")!=null && !"".equals(session.getAttribute("username"))){
+				username = session.getAttribute("username").toString();
+				result =true;
+			}
+			%>
+			var result = "<%=result %>";
+			var html ="<a href='register.jsp'>注册</a>&nbsp; &nbsp;&nbsp;<a href='login.jsp'>登录</a>&nbsp; &nbsp;&nbsp;";
+		
+			if(result=="true"){
+				html = "欢迎 &nbsp; &nbsp;"+"<%=username %>"+"&nbsp; &nbsp;用户"+"&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href='logout?v=11'>注销</a>";
+			}
+			$("#bk_red").html(html);
 		}
 	</script>
 </head>
 
 <body>
-<table width="75%" border="0" align="center" class="bk_white">
+<table width="73%" border="0" align="center" class="bk_white">
   <tr>
-    <td colspan="5" class="bk_red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="register.html">注册</a>&nbsp; &nbsp;&nbsp;<a href="login.html">登录</a>&nbsp; &nbsp;&nbsp;<a href="http://fans.a-li.com.cn/" target="_blank">论坛</a>&nbsp; &nbsp;&nbsp;<a href="http://m.idreamcastle.com/" target="_blank">会员</a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</td>
+    <td colspan="5" class="bk_red" id="bk_red"></td>
   </tr>
   <tr>
-    <td width="188"><img src="pic_source/erweima.gif" width="190" height="189" align="center"></td>
+    <td width="24%"><img src="pic_source/erweima.gif" width="190" height="189" align="center"></td>
     <td colspan="4"><img src="pic_source/logo_1.png" width="400" height="230" align="center"></td>
   </tr>
   <tr>
@@ -155,27 +208,44 @@ body{font:12px/180% Arial, Helvetica, sans-serif, "宋体";background:#EEE;}
 </script>
       <div id="menu" class="menu">
         <ul>
-          <li><a href="home.html">网站首页</a></li>
-          <li><a href="news.jsp">最新消息</a></li>
-          <li><a href="storybook.html">童话绘本</a></li>
+          <li><a href="home.jsp">网站首页</a></li>
+          <li><a href="show.jhtml">最新消息</a></li>
+          <li><a href="storybook.jsp">童话绘本</a></li>
           <li><a href="https://ali.tmall.com/" target="_blank">周边商城</a></li>
-          <li><a href="photo.html">素材下载</a></li>
-          <li><a href="video.html">加入我们</a></li>
-          <li><a href="connect.html">联系我们</a></li>
+          <li><a href="photo.jsp">素材下载</a></li>
+          <li><a href="video.jsp">加入我们</a></li>
+          <li><a href="upload.jsp">上传材料</a></li>
         </ul>
       </div>
-    <div style="text-align:center;clear:both"></div></td>
+  </td>
   </tr>
   <tr>
     <td><img src="pic_source/logo_0.png" width="180" height="180" align="top"></td>
     <td colspan="4" rowspan="5">
+    <div class="f1">
     	<form name="form1" method="post" action="/homework/register.jhtml">
-     		用户名：<input type="text" name="username"><br>
-     		密码：<input type="password" name="password"><br>
-     		手机号：<input type="text" id="phone" name="phone" pattern="[0-9]{11,11}" placeholder="Please enter your phone number" title="It must contain a valid phone number formed only by numerical values and a length  11 characters !" required><br>
-     		短信验证码：<input type="text" name="code"><input id="sendCodeBtn" type="button" value="发送验证码" onclick="sendCode()"><br>
-     		<input type="submit" value="注册">
+     		<table>
+     		<tr>
+     			<td>用户名：<input type="text" name="username" size="25"></td>
+     		</tr><br>
+     		<tr>
+     			<td>密码：<input type="password" name="password" size="25"></td>
+     		</tr><br>
+     		<tr>
+     			<td>手机号：<input type="text" id="phone" name="phone" size="25" pattern="[0-9]{11,11}" placeholder="Please enter your phone number" title="It must contain a valid phone number formed only by numerical values and a length  11 characters !" required></td>
+     		</tr><br>
+     		<tr>
+     			<td>短信验证码：<input type="text" name="code" size="25"></td>
+     		</tr><br>
+     		<tr>
+     			<td>
+     			<input id="sendCodeBtn" type="button" value="发送验证码" onclick="sendCode()">&nbsp;&nbsp;&nbsp;
+     			<input type="submit" value="注册">
+     			</td>
+     		</tr>
+     		</table>
       	</form>
+      </div>
    	</td>
   </tr>
   <tr>
@@ -195,7 +265,7 @@ body{font:12px/180% Arial, Helvetica, sans-serif, "宋体";background:#EEE;}
   </tr>
   <tr>
     <td colspan="5" class="bk_red"><p>
-    <a href="http://www.a-li.com.cn/portal.php?mod=view&aid=3837" target="_blank">梦之城人物 </a>|
+    <a href="http://www.a-li.com.cn/portal.php?mod=view&aid=3837" target="_blank"> 梦之城人物 </a>|
     <a href="http://www.a-li.com.cn/portal.php?mod=view&aid=3838" target="_blank"> 梦之城理念 </a>|
     <a href="http://www.a-li.com.cn/portal.php?mod=view&aid=3839" target="_blank"> 正版商铺 </a>|
     <a href="http://www.a-li.com.cn/portal.php?mod=view&aid=3627" target="_blank"> 梦之城 </a>|
